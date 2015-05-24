@@ -35,15 +35,14 @@ function widget:Update()
             end
         end
     end
-    unitstodrawlength = #unitstodraw
 end
 
 function widget:DrawWorldPreUnit()
     gl.LineWidth(5)
-    for i=1, unitstodrawlength do
-        local pos = unitstodraw[i].pos
-        local radarRadius = unitstodraw[i].range
-        local color = unitstodraw[i].colormap
+    for unitID,_ in pairs(unitstodraw) do
+        local pos = unitstodraw[unitID].pos
+        local radarRadius = unitstodraw[unitID].range
+        local color = unitstodraw[unitID].colormap
         gl.Color(color[1], color[2], color[3], color[4])
         gl.DrawGroundCircle(pos[1], pos[2], pos[3], radarRadius, 48)
     end
